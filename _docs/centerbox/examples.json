@@ -1,0 +1,10 @@
+{
+  "simple": {
+    "input": {
+      "template": "centerbox",
+      "title": "Title & Header",
+      "accept": "html"
+    },
+    "expected": "$doc:simple"
+  }
+}

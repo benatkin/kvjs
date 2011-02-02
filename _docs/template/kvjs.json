@@ -1,0 +1,8 @@
+{
+  "name": "centerbox",
+  "title": "CenterBox",
+  "type": "class",
+  "functions": {
+    "render": true
+  }
+}

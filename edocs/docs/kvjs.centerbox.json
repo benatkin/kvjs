@@ -1,0 +1,117 @@
+{
+  "_id": "kvjs.centerbox", 
+  "_rev": "48-d9dc9a052f1ccddc1dfeefe14e1155b1", 
+  "couchapp": {
+    "manifest": [
+      "examples.json", 
+      "kvjs.json", 
+      "page.html", 
+      "styles.css", 
+      "vars.json"
+    ], 
+    "objects": {}, 
+    "signatures": {}
+  }, 
+  "examples": {
+    "simple": {
+      "expected": "$doc:simple", 
+      "input": {
+        "accept": "html", 
+        "template": "centerbox", 
+        "title": "Title & Header"
+      }
+    }
+  }, 
+  "kvjs": {
+    "name": "centerbox", 
+    "title": "CenterBox", 
+    "type": "template"
+  }, 
+  "page": "<html>\n  <head>\n    <title>{{ title }}</title>\n    {{{ stylesheets }}}\n    {{{ inline_styles }}}\n  </head>\n  <body class=\"{{ class }}\">\n    <div class=\"{{ class }}_wrap\">\n      <div class=\"{{ class }}_box\">\n        <div class=\"{{ class }}_header\">\n          <h1>{{ title }}</h1>\n          {{ #subtitle }}\n          <p>{{ subtitle }}</p>\n          {{ /subtitle }}\n        </div>\n        <div class=\"{{ class }}_body\">\n          {{{ body }}}\n        </div>\n      </div>\n    </div>\n    {{{ scripts }}}\n    {{{ inline_scripts }}}\n  </body>\n</html>", 
+  "styles": "body.{{ css_class }} {\n  color: #bbb;\n  font-family: helvetica, Arial, sans-serif;\n}\n\nbody.{{ css_class }} div.{{ css_class }}_box {\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 0.5em;\n  margin-bottom: 0.5em;\n  padding: 0;\n}\n\nbody.{{ css_class }} div.{{ css_class }}_header {\n  background-color: #000;\n  margin: 0;\n  padding: 0.5em;\n}\n\nbody.{{ css_class }} div.{{ css_class }}_header h1 {\n  color: #fff;\n  text-align: center;\n}\n\nbody.{{ css_class }} div.{{ css_class }}_body {\n  background-color: #000;\n}", 
+  "vars": {
+    "body": {
+      "context": "block", 
+      "escaped": false, 
+      "placeholder": "(block content here)", 
+      "required": true, 
+      "type": "html"
+    }, 
+    "css_class": {
+      "default": "centerbox", 
+      "type": "css_class"
+    }, 
+    "html_title": {
+      "default_to": "title", 
+      "type": "text"
+    }, 
+    "include_styles": {
+      "choices": [
+        "inline", 
+        "external", 
+        {
+          "text": "off", 
+          "value": false
+        }
+      ], 
+      "default": "inline", 
+      "other": false, 
+      "type": "choice"
+    }, 
+    "inline_scripts": {
+      "context": "any", 
+      "type": "html"
+    }, 
+    "inline_styles": {
+      "rules": {
+        "include_inline": {
+          "filter": "append_inline_css", 
+          "match": {
+            "include_styles": "inline"
+          }
+        }
+      }, 
+      "type": "html"
+    }, 
+    "login": {
+      "default": "", 
+      "escaped": false
+    }, 
+    "scripts": {
+      "context": "any", 
+      "default": "", 
+      "escaped": false, 
+      "input": {
+        "default": [], 
+        "type": "scripts"
+      }, 
+      "type": "html"
+    }, 
+    "stylesheets": {
+      "context": "head", 
+      "default": "", 
+      "escaped": false, 
+      "input": {
+        "default": [], 
+        "type": "stylesheets"
+      }, 
+      "rules": {
+        "include_external": {
+          "filter": "append_external_css", 
+          "match": {
+            "include_styles": "external"
+          }
+        }
+      }, 
+      "type": "html"
+    }, 
+    "subheading": {
+      "type": "text"
+    }, 
+    "title": {
+      "placeholder": "CenterBox", 
+      "required": true, 
+      "type": "text"
+    }
+  }
+}

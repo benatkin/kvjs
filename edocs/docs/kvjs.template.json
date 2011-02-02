@@ -1,0 +1,21 @@
+{
+  "_id": "kvjs.template", 
+  "_rev": "48-b83cc3725456e8a2c954e9aca678b9e0", 
+  "couchapp": {
+    "manifest": [
+      "kvjs.json", 
+      "render.js"
+    ], 
+    "objects": {}, 
+    "signatures": {}
+  }, 
+  "kvjs": {
+    "functions": {
+      "render": true
+    }, 
+    "name": "centerbox", 
+    "title": "CenterBox", 
+    "type": "class"
+  }, 
+  "render": "function(doc) {\n  return this.page;\n}"
+}

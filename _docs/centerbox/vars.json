@@ -1,0 +1,86 @@
+{
+  "title": {
+    "placeholder": "CenterBox",
+    "type": "text",
+    "required": true
+  },
+  "subheading": {
+    "type": "text"
+  },
+  "html_title": {
+    "default_to": "title",
+    "type": "text"
+  },
+  "css_class": {
+    "default": "centerbox",
+    "type": "css_class"
+  },
+  "body": {
+    "type": "html",
+    "escaped": false,
+    "required": true,
+    "placeholder": "(block content here)",
+    "context": "block"
+  },
+  "scripts": {
+    "type": "scripts",
+    "input": {
+      "type": "scripts",
+      "default": []
+    },
+    "type": "html",
+    "context": "any",
+    "default": "",
+    "escaped": false
+  },
+  "stylesheets": {
+    "input": {
+      "type": "stylesheets",
+      "default": []
+    },
+    "type": "html",
+    "context": "head",
+    "default": "",
+    "escaped": false,
+    "rules": {
+      "include_external": {
+        "match": {
+          "include_styles": "external"
+        },
+        "filter": "append_external_css"
+      }
+    }
+  },  
+  "inline_styles": {
+    "type": "html",
+    "rules": {
+      "include_inline": {
+        "match": {
+          "include_styles": "inline"
+        },
+        "filter": "append_inline_css"
+      }
+    }
+  },
+  "inline_scripts": {
+    "type": "html",
+    "context": "any"
+  },
+  "include_styles": {
+    "type": "choice",
+    "choices": [
+      "inline",  
+      "external",
+      {
+        "text": "off",
+        "value": false
+      }
+    ],
+    "default": "inline",
+    "other": false
+  },
+  "login": {
+    "default": "",
+    "escaped": false
+  }
+}

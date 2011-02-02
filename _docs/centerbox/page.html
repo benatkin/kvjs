@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>{{ title }}</title>
+    {{{ stylesheets }}}
+    {{{ inline_styles }}}
+  </head>
+  <body class="{{ class }}">
+    <div class="{{ class }}_wrap">
+      <div class="{{ class }}_box">
+        <div class="{{ class }}_header">
+          <h1>{{ title }}</h1>
+          {{ #subtitle }}
+          <p>{{ subtitle }}</p>
+          {{ /subtitle }}
+        </div>
+        <div class="{{ class }}_body">
+          {{{ body }}}
+        </div>
+      </div>
+    </div>
+    {{{ scripts }}}
+    {{{ inline_scripts }}}
+  </body>
+</html>
