@@ -1,0 +1,12 @@
+{
+  "kvjs": {
+    "class": "CenterBox", 
+    "functions": {
+      "render": true
+    }, 
+    "name": "centerbox", 
+    "title": "CenterBox", 
+    "type": "script"
+  }, 
+  "render": "function(doc) {\n  return this.page;\n}"
+}

@@ -2,7 +2,7 @@
 
 # TODO: make this a standalone script
 # TODO: implement filters
-# TODO: implement fulfillment for any doc & dependency resolution
+# TODO: implement fulfillment for non-design docs & dependency resolution
 
 import logging
 import os
@@ -19,18 +19,19 @@ class Fulfillment(object):
     self.db = self.conf.get_dbs()[0]
     
   def run(self):
-    if os.path.exists('edocs/require.json'):
-      with open('edocs/require.json') as f:
-        edocs = json.load(f)
+    if os.path.exists('kvjs.json'):
+      with open('kvjs.json') as f:
+        edocs = json.load(f)['edocs']
       if len(edocs) > 0:
-        if not os.path.exists('./edocs/docs'):
-          os.mkdir('./edocs/docs')
-      for edoc, value in edocs.items():
-        doc = self.db.open_doc(edoc)
-        with open('./edocs/docs/%s.json' % edoc, 'w') as f:
-          json.dump(doc, f, indent=2, sort_keys=True)
+        if not os.path.exists('./edocs'):
+          os.mkdir('./edocs')
+        for edoc, value in edocs.items():
+          doc = self.db.open_doc(edoc)
+          for field in ['_id', '_rev', 'couchapp']:
+            del doc[field]
+          with open('./edocs/%s.json' % edoc, 'w') as f:
+            json.dump(doc, f, indent=2, sort_keys=True)
 
-def hook(path, hooktype, **kwarg):
-  if hooktype == "pre-push":
-    fulfillment = Fulfillment()
-    fulfillment.run()
+if __name__ == '__main__':
+  fulfillment = Fulfillment()
+  fulfillment.run()

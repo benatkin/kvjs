@@ -1,5 +1,6 @@
 function(doc) {
   // TODO: make it look at the doc & find the template
-  var ddoc = this;
-  return '<textarea>'+JSON.stringify(ddoc.edocs.docs['kvjs.centerbox'], null, 2)+'</textarea>'
+  var ddoc = this,
+      mustache = require('edocs/kvjs_mustache/mustache');
+  return mustache.to_html('<h1>{{ greeting }}</h1>', {greeting: "Hello, mustache!"});
 }
