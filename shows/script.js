@@ -1,10 +1,10 @@
 function(doc, req) {
-  var mustache = require('edocs/mustache/js_module'),
-      script_renderer = require('edocs/script_renderer/js_module');
+  var docenv = require('edocs/docenv/js_module'),
+      ddoc = new(docenv.DocEnv)(this),
+      ScriptRenderer = ddoc.edoc_modules.script_renderer.ScriptRenderer;
       
-  var body = new(script_renderer.ScriptRenderer)({
-    mustache: mustache,
-    ddoc: this,
+  var body = new(ScriptRenderer)({
+    ddoc: ddoc,
     doc: doc,
     req: req
   }).render();

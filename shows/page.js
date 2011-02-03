@@ -1,7 +1,7 @@
 function(doc) {
   // TODO: make it look at the doc & find the template
-  var ddoc = this,
-      mustache = require('edocs/mustache/js_module'),
-      template = require('edocs/template/js_module');
-  return new(template.Template)(this.edocs.centerbox).render(doc);
+  var docenv = require('edocs/docenv/js_module'),
+      ddoc = new(docenv.DocEnv)(this);
+  
+  return new(ddoc.edoc_modules.template.Template)(ddoc.edocs.centerbox).render(doc);
 }

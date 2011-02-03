@@ -33,7 +33,7 @@ class Fulfillment(object):
         edoc = self.db.open_doc(edoc_id)
         for field in ['_id', '_rev', 'couchapp']:
           if field in edoc:
-            if field != '_rev':
+            if field not in ('_rev', 'edocs'):
               edoc['edoc_' + field] = edoc[field];
             del edoc[field]
         self.write_if_changed(self.doc_path('edocs/%s.json' % edoc_id, doc_id), edoc)

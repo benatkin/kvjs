@@ -1,3 +1,3 @@
-function(template_spec) {
-  this.template_spec =  template_spec;
+function(template_doc) {
+  this.tdoc =  template_doc;
 }

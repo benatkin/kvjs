@@ -1,5 +1,6 @@
 {
   "edocs": {
+    "docenv": true,
     "centerbox": true,
     "template": true,
     "mustache": true,

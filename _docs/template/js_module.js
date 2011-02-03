@@ -1,6 +1,6 @@
 ;(function() {
-  var Template = function(template_spec) {
-    this.template_spec =  template_spec;
+  var Template = function(template_doc) {
+    this.tdoc =  template_doc;
   };
   
   if (exports) {
@@ -12,7 +12,7 @@
   
   Template.prototype = {
     "render": function(doc) {
-      return this.template_spec.page + 'test';
+      return this.tdoc.page;
     }
   };
 })(this);

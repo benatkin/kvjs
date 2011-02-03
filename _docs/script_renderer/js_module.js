@@ -1,9 +1,9 @@
 ;(function(){
   
 var ScriptRenderer = function(p) {
-  this.mustache = p.mustache;
   this.doc = p.doc;
   this.ddoc = p.ddoc;
+  this.mustache = this.ddoc.edoc_modules.mustache;
   this.template = this.ddoc.edocs.script_renderer.template;
   this.js_functions = (this.doc.kvjs && this.doc.kvjs.js_functions) || {};
   this.js_functions.js_prototype = (this.js_functions.js_prototype) || {};

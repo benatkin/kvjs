@@ -1,0 +1,10 @@
+{
+  "name": "docenv",
+  "title": "DocEnv",
+  "type": "script",
+  "js_class": "DocEnv",
+  "js_functions": {
+    "js_prototype": {}
+  },
+  "build_module": true
+}

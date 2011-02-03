@@ -11,10 +11,10 @@
     "objects": {}, 
     "signatures": {}
   }, 
-  "js_constructor": "function(template_spec) {\n  this.template_spec =  template_spec;\n}", 
-  "js_module": ";(function() {\n  var Template = function(template_spec) {\n    this.template_spec =  template_spec;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.template = {};\n    this.template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      return this.template_spec.page + 'test';\n    }\n  };\n})(this);", 
+  "js_constructor": "function(template_doc) {\n  this.tdoc =  template_doc;\n}", 
+  "js_module": ";(function() {\n  var Template = function(template_doc) {\n    this.tdoc =  template_doc;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.template = {};\n    this.template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      return this.tdoc.page;\n    }\n  };\n})(this);", 
   "js_prototype": {
-    "render": "function(doc) {\n  return this.template_spec.page + 'test';\n}"
+    "render": "function(doc) {\n  return this.tdoc.page;\n}"
   }, 
   "kvjs": {
     "build_module": true, 
