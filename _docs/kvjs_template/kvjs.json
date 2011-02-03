@@ -1,8 +1,8 @@
 {
-  "name": "centerbox",
-  "title": "CenterBox",
+  "name": "template",
+  "title": "Template",
   "type": "script",
-  "class": "CenterBox",
+  "js_class": "Template",
   "functions": {
     "render": true
   }

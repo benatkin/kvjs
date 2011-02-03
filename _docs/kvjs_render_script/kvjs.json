@@ -1,0 +1,6 @@
+{
+  "name": "render_script",
+  "title": "Script Renderer",
+  "type": "script",
+  "commonjs": "render_script"
+}

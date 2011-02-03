@@ -1,3 +1,3 @@
 function(doc) {
-  return this.page;
+  return this.page + '.....';
 }

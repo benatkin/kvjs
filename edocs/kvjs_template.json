@@ -1,12 +1,14 @@
 {
+  "constructor_fn": "function(template_spec) {\n  this.template_spec =  template_spec;\n}", 
   "kvjs": {
-    "class": "CenterBox", 
     "functions": {
       "render": true
     }, 
-    "name": "centerbox", 
-    "title": "CenterBox", 
+    "js_class": "Template", 
+    "name": "template", 
+    "title": "Template", 
     "type": "script"
   }, 
-  "render": "function(doc) {\n  return this.page;\n}"
+  "module": ";(function() {\n  var Template = function(template_spec) {\n    this.template_spec =  template_spec;\n  };\n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.kvjs_template = {};\n    this.kvjs_template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      return this.page + '.....';\n    }\n  };\n})(this);", 
+  "render": "function(doc) {\n  return this.page + '.....';\n}"
 }

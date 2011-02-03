@@ -1,6 +1,6 @@
 {
-  "name": "centerbox",
-  "title": "CenterBox",
+  "name": "mustache",
+  "title": "Mustache",
   "type": "script",
   "commonjs": "mustache"
 }
