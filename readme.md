@@ -13,7 +13,7 @@ Getting Started
     d.  Create a .couchapprc in the root directory of this repo
     e.  run `couchapp push`
 2.  Edit the documents (the design document and the documents under \_docs) and run `couchapp push` to update them.
-3.  If you edit and push any of the documents in _docs that are embedded in the design document (declared in edocs/require.json) run `python fulfillment.py` to update the design document. Then, push again.
+3.  Runn `python fulfillment.py` to update documents that are automatically processed or are generated from other documents. Then, push again. Some changes, especially changing the script renderer, require running `couchapp push` and `python fulfillment.py` more than once.
 
 Sample `.couchapprc`:
     {
@@ -33,7 +33,10 @@ TODO
 * Make page show function grab the title from `doc.kvjs.title` and spit out the json in a pre for now
 * add _rewrite
 * deploy to Cloudant at kvjs.com
-* I [avoid yammering about my uber-clever plans before I attempt them](http://sivers.org/zipit), but I have other todos. If you're curious, find me online. I may tell you some of them. :)
+* ...
+* get a proper build system going
+
+I [avoid yammering about my uber-clever plans before I attempt them](http://sivers.org/zipit), but I have other todos. If you're curious, find me online. I may tell you some of them. :)
 
 LICENSE
 -------
