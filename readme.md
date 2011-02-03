@@ -28,8 +28,7 @@ TODO
 ----
 
 * Include underscore.js
-* Set up quick *edocs* requiring within the design doc
-* Make `page` show function require and use template
+* Make `page` show function use template
 * Make page show function grab the title from `doc.kvjs.title` and spit out the json in a pre for now
 * add _rewrite
 * deploy to Cloudant at kvjs.com
