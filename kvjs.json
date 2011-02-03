@@ -1,8 +1,8 @@
 {
   "edocs": {
-    "kvjs_centerbox": true,
-    "kvjs_template": true,
-    "kvjs_mustache": true,
-    "kvjs_script_renderer": true
+    "centerbox": true,
+    "template": true,
+    "mustache": true,
+    "script_renderer": true
   }
 }

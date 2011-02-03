@@ -1,0 +1,20 @@
+{
+  "edoc__id": "script_renderer", 
+  "edoc_couchapp": {
+    "manifest": [
+      "js_module.js", 
+      "kvjs.json", 
+      "template.js"
+    ], 
+    "objects": {}, 
+    "signatures": {}
+  }, 
+  "js_module": ";(function(){\n  \nvar ScriptRenderer = function(p) {\n  this.mustache = p.mustache;\n  this.doc = p.doc;\n  this.ddoc = p.ddoc;\n  this.template = this.ddoc.edocs.script_renderer.template;\n  this.js_functions = (this.doc.kvjs && this.doc.kvjs.js_functions) || {};\n  this.js_functions.js_prototype = (this.js_functions.js_prototype) || {};\n};\n\nScriptRenderer.prototype = {\n  indent: function(v, space) {\n    if (typeof v === \"string\") {\n      return v.replace(/\\n/g, \"\\n\" + space);\n    }\n    return v;\n  },\n  render_js_prototype: function() {\n    var lines = [], value, value_str;\n    for (var key in this.doc.js_prototype) {\n      value = this.doc.js_prototype[key];\n      value = this.indent(this.js_functions.js_prototype[key] ? value : JSON.stringify(value, null, 2), \"    \");\n      lines.push(\"    \" + JSON.stringify(key) + ': ' + value);\n    }\n    return \"{\\n\" + lines.join(\",\\n\") + \"\\n  }\"\n  },\n  render: function() {\n    return this.mustache.to_html(this.template, {\n      \"js_class\": this.doc.kvjs.js_class,\n      \"js_constructor\": this.indent(this.doc.js_constructor, \"  \"),\n      \"js_prototype\": this.render_js_prototype(),\n      \"doc_id\": this.doc._id\n    });\n  }\n};\n\nif (typeof exports !== 'undefined') {\n  exports.ScriptRenderer = ScriptRenderer;\n} else {\n  this.kvjs = (this.kvjs || {});\n  this.kvjs.ScriptRenderer = ScriptRenderer;\n}\n\n})(this);", 
+  "kvjs": {
+    "js_class": "ScriptRenderer", 
+    "name": "script_renderer", 
+    "title": "Script Renderer", 
+    "type": "script"
+  }, 
+  "template": ";(function() {\n  var {{{ js_class }}} = {{{ js_constructor }}};\n  \n  if (exports) {\n    exports.{{{ js_class }}} = {{{ js_class }}};\n  } else {\n    this.{{{ doc_id }}} = {};\n    this.{{{ doc_id }}}.{{{ js_class }}} = {{{ js_class }}};\n  }\n  \n  {{{ js_class }}}.prototype = {{{ js_prototype }}};\n})(this);"
+}

@@ -1,8 +1,8 @@
 function(doc, req) {
-  var mustache = require('edocs/kvjs_mustache/mustache'),
-      render_script = require('edocs/kvjs_render_script/render_script');
+  var mustache = require('edocs/mustache/js_module'),
+      script_renderer = require('edocs/script_renderer/js_module');
       
-  var body = new(render_script.ScriptRenderer)({
+  var body = new(script_renderer.ScriptRenderer)({
     mustache: mustache,
     ddoc: this,
     doc: doc,

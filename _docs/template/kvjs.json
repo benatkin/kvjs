@@ -3,9 +3,10 @@
   "title": "Template",
   "type": "script",
   "js_class": "Template",
-  "functions": {
-    "prototype": {
+  "js_functions": {
+    "js_prototype": {
       "render": true
     }
-  }
+  },
+  "build_module": true
 }

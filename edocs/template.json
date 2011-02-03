@@ -1,0 +1,31 @@
+{
+  "edoc__id": "template", 
+  "edoc_couchapp": {
+    "manifest": [
+      "js_constructor.js", 
+      "js_module.js", 
+      "js_prototype/", 
+      "js_prototype/render.js", 
+      "kvjs.json"
+    ], 
+    "objects": {}, 
+    "signatures": {}
+  }, 
+  "js_constructor": "function(template_spec) {\n  this.template_spec =  template_spec;\n}", 
+  "js_module": ";(function() {\n  var Template = function(template_spec) {\n    this.template_spec =  template_spec;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.template = {};\n    this.template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      return this.template_spec.page + 'test';\n    }\n  };\n})(this);", 
+  "js_prototype": {
+    "render": "function(doc) {\n  return this.template_spec.page + 'test';\n}"
+  }, 
+  "kvjs": {
+    "build_module": true, 
+    "js_class": "Template", 
+    "js_functions": {
+      "js_prototype": {
+        "render": true
+      }
+    }, 
+    "name": "template", 
+    "title": "Template", 
+    "type": "script"
+  }
+}

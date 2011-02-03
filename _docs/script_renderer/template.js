@@ -1,5 +1,5 @@
 ;(function() {
-  var {{{ js_class }}} = {{{ constructor_fn }}};
+  var {{{ js_class }}} = {{{ js_constructor }}};
   
   if (exports) {
     exports.{{{ js_class }}} = {{{ js_class }}};
@@ -8,5 +8,5 @@
     this.{{{ doc_id }}}.{{{ js_class }}} = {{{ js_class }}};
   }
   
-  {{{ js_class }}}.prototype = {{{ proto }}};
+  {{{ js_class }}}.prototype = {{{ js_prototype }}};
 })(this);

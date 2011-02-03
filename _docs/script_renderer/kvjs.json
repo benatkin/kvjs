@@ -2,6 +2,5 @@
   "name": "script_renderer",
   "title": "Script Renderer",
   "type": "script",
-  "js_class": "ScriptRenderer",
-  "build_module": false
+  "js_class": "ScriptRenderer"
 }
