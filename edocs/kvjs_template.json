@@ -9,6 +9,6 @@
     "title": "Template", 
     "type": "script"
   }, 
-  "module": ";(function() {\n  var Template = function(template_spec) {\n    this.template_spec =  template_spec;\n  };\n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.kvjs_template = {};\n    this.kvjs_template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      return this.page + '.....';\n    }\n  };\n})(this);", 
-  "render": "function(doc) {\n  return this.page + '.....';\n}"
+  "module": ";(function() {\n  var Template = function(template_spec) {\n    this.template_spec =  template_spec;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.kvjs_template = {};\n    this.kvjs_template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      return this.template_spec.page;\n    }\n  };\n})(this);", 
+  "render": "function(doc) {\n  return this.template_spec.page;\n}"
 }

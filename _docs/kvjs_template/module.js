@@ -12,7 +12,7 @@
   
   Template.prototype = {
     "render": function(doc) {
-      return this.page + '.....';
+      return this.template_spec.page;
     }
   };
 })(this);
