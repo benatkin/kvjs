@@ -3,6 +3,6 @@
     "kvjs_centerbox": true,
     "kvjs_template": true,
     "kvjs_mustache": true,
-    "kvjs_render_script": true
+    "kvjs_script_renderer": true
   }
 }

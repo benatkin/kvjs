@@ -4,6 +4,8 @@
   "type": "script",
   "js_class": "Template",
   "functions": {
-    "render": true
+    "prototype": {
+      "render": true
+    }
   }
 }

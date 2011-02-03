@@ -1,4 +1,12 @@
 {
+  "couchapp": {
+    "manifest": [
+      "kvjs.json", 
+      "mustache.js"
+    ], 
+    "objects": {}, 
+    "signatures": {}
+  }, 
   "kvjs": {
     "commonjs": "mustache", 
     "name": "mustache", 

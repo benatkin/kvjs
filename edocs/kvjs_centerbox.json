@@ -1,4 +1,15 @@
 {
+  "couchapp": {
+    "manifest": [
+      "examples.json", 
+      "kvjs.json", 
+      "page.html", 
+      "styles.css", 
+      "vars.json"
+    ], 
+    "objects": {}, 
+    "signatures": {}
+  }, 
   "examples": {
     "simple": {
       "expected": "$doc:simple", 

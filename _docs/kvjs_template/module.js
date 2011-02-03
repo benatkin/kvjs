@@ -1,6 +1,6 @@
 ;(function() {
   var Template = function(template_spec) {
-    this.template_spec =  template_spec;
+    this.template_spec = template_spec;
   };
   
   if (exports) {
@@ -11,8 +11,8 @@
   }
   
   Template.prototype = {
-    "render": function(doc) {
-      return this.template_spec.page;
+    "prototype": {
+      "render": "function(doc) {\n  return this.template_spec.page;\n}"
     }
   };
 })(this);
