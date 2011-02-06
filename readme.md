@@ -35,7 +35,12 @@ TODO
 * ...
 * get a proper build system going
 
-I [avoid yammering about my uber-clever plans before I attempt them](http://sivers.org/zipit), but I have other todos. If you're curious, find me online. I may tell you some of them. :)
+I [avoid yammering about my uber-clever plans before I attempt them](http://sivers.org/zipit "one of my favorite articles"), but I have other todos. If you're curious, find me online. I may tell you some of them. :)
+
+Annotations, Stamping, Items (draft)
+------------------------------------
+
+Some annotations, like those in Activity Streams format, could be built in. Others could be added later. Perhaps the ones added later would need to be specified in a metadata property for every document it's added to.
 
 LICENSE
 -------
