@@ -5,7 +5,7 @@ var ScriptRenderer = function(p) {
   this.ddoc = p.ddoc;
   this.mustache = this.ddoc.edoc_modules.mustache;
   this.template = this.ddoc.edocs.script_renderer.template;
-  this.js_functions = (this.doc.kvjs && this.doc.kvjs.js_functions) || {};
+  this.js_functions = (this.doc.env && this.doc.env.js_functions) || {};
   this.js_functions.js_prototype = (this.js_functions.js_prototype) || {};
 };
 
@@ -27,7 +27,7 @@ ScriptRenderer.prototype = {
   },
   render: function() {
     return this.mustache.to_html(this.template, {
-      "js_class": this.doc.kvjs.js_class,
+      "js_class": this.doc.env.js_class,
       "js_constructor": this.indent(this.doc.js_constructor, "  "),
       "js_prototype": this.render_js_prototype(),
       "doc_id": this.doc._id
@@ -38,8 +38,8 @@ ScriptRenderer.prototype = {
 if (typeof exports !== 'undefined') {
   exports.ScriptRenderer = ScriptRenderer;
 } else {
-  this.kvjs = (this.kvjs || {});
-  this.kvjs.ScriptRenderer = ScriptRenderer;
+  this.env = (this.env || {});
+  this.env.ScriptRenderer = ScriptRenderer;
 }
 
 })(this);

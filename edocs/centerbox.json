@@ -3,7 +3,7 @@
   "edoc_couchapp": {
     "manifest": [
       "examples.json", 
-      "kvjs.json", 
+      "env.json", 
       "page.html", 
       "styles.css", 
       "vars.json"
@@ -21,7 +21,7 @@
       }
     }
   }, 
-  "kvjs": {
+  "env": {
     "name": "centerbox", 
     "title": "CenterBox", 
     "type": "template"

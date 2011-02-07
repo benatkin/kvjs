@@ -6,9 +6,9 @@
         this[key] = doc[key];
       }
     }
-    if (this.kvjs && this.kvjs.edocs) {
+    if (this.env && this.env.edocs) {
       this.edoc_modules = {};
-      for (key in this.kvjs.edocs) {
+      for (key in this.env.edocs) {
         if (this.edocs[key] && this.edocs[key].js_module) {
           this.edoc_modules[key] = require('edocs/' + key + '/js_module');
         }

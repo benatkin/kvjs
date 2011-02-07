@@ -5,15 +5,15 @@
       "js_constructor.js", 
       "js_module.js", 
       "js_prototype/", 
-      "kvjs.json"
+      "env.json"
     ], 
     "objects": {}, 
     "signatures": {}
   }, 
-  "js_constructor": "function(doc) {\n  var key;\n  for (key in doc) {\n    if (doc.hasOwnProperty(key)) {\n      this[key] = doc[key];\n    }\n  }\n  if (this.kvjs && this.kvjs.edocs) {\n    this.edoc_modules = {};\n    for (key in this.kvjs.edocs) {\n      if (this.edocs[key] && this.edocs[key].js_module) {\n        this.edoc_modules[key] = require('edocs/' + key + '/js_module');\n      }\n    }\n  }\n}", 
-  "js_module": ";(function() {\n  var DocEnv = function(doc) {\n    var key;\n    for (key in doc) {\n      if (doc.hasOwnProperty(key)) {\n        this[key] = doc[key];\n      }\n    }\n    if (this.kvjs && this.kvjs.edocs) {\n      this.edoc_modules = {};\n      for (key in this.kvjs.edocs) {\n        if (this.edocs[key] && this.edocs[key].js_module) {\n          this.edoc_modules[key] = require('edocs/' + key + '/js_module');\n        }\n      }\n    }\n  };\n  \n  if (exports) {\n    exports.DocEnv = DocEnv;\n  } else {\n    this.docenv = {};\n    this.docenv.DocEnv = DocEnv;\n  }\n  \n  DocEnv.prototype = {\n\n  };\n})(this);", 
+  "js_constructor": "function(doc) {\n  var key;\n  for (key in doc) {\n    if (doc.hasOwnProperty(key)) {\n      this[key] = doc[key];\n    }\n  }\n  if (this.env && this.env.edocs) {\n    this.edoc_modules = {};\n    for (key in this.env.edocs) {\n      if (this.edocs[key] && this.edocs[key].js_module) {\n        this.edoc_modules[key] = require('edocs/' + key + '/js_module');\n      }\n    }\n  }\n}", 
+  "js_module": ";(function() {\n  var DocEnv = function(doc) {\n    var key;\n    for (key in doc) {\n      if (doc.hasOwnProperty(key)) {\n        this[key] = doc[key];\n      }\n    }\n    if (this.env && this.env.edocs) {\n      this.edoc_modules = {};\n      for (key in this.env.edocs) {\n        if (this.edocs[key] && this.edocs[key].js_module) {\n          this.edoc_modules[key] = require('edocs/' + key + '/js_module');\n        }\n      }\n    }\n  };\n  \n  if (exports) {\n    exports.DocEnv = DocEnv;\n  } else {\n    this.docenv = {};\n    this.docenv.DocEnv = DocEnv;\n  }\n  \n  DocEnv.prototype = {\n\n  };\n})(this);", 
   "js_prototype": {}, 
-  "kvjs": {
+  "env": {
     "build_module": true, 
     "js_class": "DocEnv", 
     "js_functions": {

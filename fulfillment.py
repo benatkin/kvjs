@@ -24,8 +24,8 @@ class Fulfillment(object):
       self.build_js(doc_id)
   
   def build_edocs(self, doc_id=None):
-    kvjs = self.get_local_kvjs(doc_id)
-    edocs = kvjs['edocs']
+    env = self.get_local_env(doc_id)
+    edocs = env['edocs']
     if len(edocs) > 0:
       if not os.path.exists(self.doc_path('edocs', doc_id)):
         os.mkdir(self.doc_path('edocs', doc_id))
@@ -39,9 +39,9 @@ class Fulfillment(object):
         self.write_if_changed(self.doc_path('edocs/%s.json' % edoc_id, doc_id), edoc)
   
   def build_js(self, doc_id=None):
-    kvjs = self.get_local_kvjs(doc_id)
-    if kvjs.has_key('js_class') and kvjs.get('build_module', False):
-      resp = self.db.res.get('/_design/kvjs/_show/script/%s' % doc_id)
+    env = self.get_local_env(doc_id)
+    if env.has_key('js_class') and env.get('build_module', False):
+      resp = self.db.res.get('/_design/env/_show/script/%s' % doc_id)
       self.write_if_changed(self.doc_path('js_module.js', doc_id), resp.body_string())
       resp.close()
   
@@ -69,10 +69,10 @@ class Fulfillment(object):
     else:
       return "_docs/%s/%s" % (doc_id, path)
   
-  def get_local_kvjs(self, doc_id):
-    kvjs_path = self.doc_path('kvjs.json', doc_id)
-    if os.path.exists(kvjs_path):
-      with open(kvjs_path) as f:
+  def get_local_env(self, doc_id):
+    env_path = self.doc_path('env.json', doc_id)
+    if os.path.exists(env_path):
+      with open(env_path) as f:
         return json.load(f)
     return {}
 

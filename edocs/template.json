@@ -1,31 +1,32 @@
 {
-  "edoc__id": "template", 
-  "edoc_couchapp": {
+  "constructor_fn": "function(template_spec) {\n  this.template_spec =  template_spec;\n}", 
+  "edoc_id": "template", 
+  "edoc_rev": "20-5305207bc51f5b05c266f610d42ba268", 
+  "edoccouchapp": {
     "manifest": [
-      "js_constructor.js", 
+      "constructor_fn.js", 
       "js_module.js", 
-      "js_prototype/", 
-      "js_prototype/render.js", 
-      "kvjs.json"
+      "env.json", 
+      "proto/", 
+      "proto/render.js"
     ], 
     "objects": {}, 
     "signatures": {}
   }, 
-  "js_constructor": "function(template_doc) {\n  this.tdoc =  template_doc;\n}", 
-  "js_module": ";(function() {\n  var Template = function(template_doc) {\n    this.tdoc =  template_doc;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.template = {};\n    this.template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      return this.tdoc.page;\n    }\n  };\n})(this);", 
-  "js_prototype": {
-    "render": "function(doc) {\n  return this.tdoc.page;\n}"
-  }, 
-  "kvjs": {
+  "js_module": ";(function() {\n  var Template = function(template_spec) {\n    this.template_spec = template_spec;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.env_template = {};\n    this.env_template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"prototype\": {\n      \"render\": \"function(doc) {\\n  return this.template_spec.page;\\n}\"\n    }\n  };\n})(this);", 
+  "env": {
     "build_module": true, 
-    "js_class": "Template", 
-    "js_functions": {
-      "js_prototype": {
+    "functions": {
+      "prototype": {
         "render": true
       }
     }, 
+    "js_class": "Template", 
     "name": "template", 
     "title": "Template", 
     "type": "script"
+  }, 
+  "proto": {
+    "render": "function(doc) {\n  return this.template_spec.page + 'test';\n}"
   }
 }
