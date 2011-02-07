@@ -2,14 +2,19 @@
   "edoc__id": "centerbox", 
   "edoc_couchapp": {
     "manifest": [
-      "examples.json", 
       "env.json", 
+      "examples.json", 
       "page.html", 
       "styles.css", 
       "vars.json"
     ], 
     "objects": {}, 
     "signatures": {}
+  }, 
+  "env": {
+    "name": "centerbox", 
+    "title": "CenterBox", 
+    "type": "template"
   }, 
   "examples": {
     "simple": {
@@ -20,11 +25,6 @@
         "title": "Title & Header"
       }
     }
-  }, 
-  "env": {
-    "name": "centerbox", 
-    "title": "CenterBox", 
-    "type": "template"
   }, 
   "page": "<html>\n  <head>\n    <title>{{ title }}</title>\n    {{{ stylesheets }}}\n    {{{ inline_styles }}}\n  </head>\n  <body class=\"{{ class }}\">\n    <div class=\"{{ class }}_wrap\">\n      <div class=\"{{ class }}_box\">\n        <div class=\"{{ class }}_header\">\n          <h1>{{ title }}</h1>\n          {{ #subtitle }}\n          <p>{{ subtitle }}</p>\n          {{ /subtitle }}\n        </div>\n        <div class=\"{{ class }}_body\">\n          {{{ body }}}\n        </div>\n      </div>\n    </div>\n    {{{ scripts }}}\n    {{{ inline_scripts }}}\n  </body>\n</html>", 
   "styles": "body.{{ css_class }} {\n  color: #bbb;\n  font-family: helvetica, Arial, sans-serif;\n}\n\nbody.{{ css_class }} div.{{ css_class }}_box {\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 0.5em;\n  margin-bottom: 0.5em;\n  padding: 0;\n}\n\nbody.{{ css_class }} div.{{ css_class }}_header {\n  background-color: #000;\n  margin: 0;\n  padding: 0.5em;\n}\n\nbody.{{ css_class }} div.{{ css_class }}_header h1 {\n  color: #fff;\n  text-align: center;\n}\n\nbody.{{ css_class }} div.{{ css_class }}_body {\n  background-color: #000;\n}", 

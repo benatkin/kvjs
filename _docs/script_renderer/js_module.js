@@ -5,8 +5,7 @@ var ScriptRenderer = function(p) {
   this.ddoc = p.ddoc;
   this.mustache = this.ddoc.edoc_modules.mustache;
   this.template = this.ddoc.edocs.script_renderer.template;
-  this.js_functions = (this.doc.env && this.doc.env.js_functions) || {};
-  this.js_functions.js_prototype = (this.js_functions.js_prototype) || {};
+  this.methods = (this.doc.env.script.methods) || {};
 };
 
 ScriptRenderer.prototype = {
@@ -16,7 +15,7 @@ ScriptRenderer.prototype = {
     }
     return v;
   },
-  render_js_prototype: function() {
+  render_methods: function() {
     var lines = [], value, value_str;
     for (var key in this.doc.js_prototype) {
       value = this.doc.js_prototype[key];
@@ -27,9 +26,9 @@ ScriptRenderer.prototype = {
   },
   render: function() {
     return this.mustache.to_html(this.template, {
-      "js_class": this.doc.env.js_class,
-      "js_constructor": this.indent(this.doc.js_constructor, "  "),
-      "js_prototype": this.render_js_prototype(),
+      "className": this.doc.env.className,
+      "construct": this.indent(this.doc.construct, "  "),
+      "methods": this.render_methods(),
       "doc_id": this.doc._id
     });
   }

@@ -1,12 +1,12 @@
 ;(function() {
-  var {{{ js_class }}} = {{{ js_constructor }}};
+  var {{{ className }}} = {{{ construct }}};
   
   if (exports) {
-    exports.{{{ js_class }}} = {{{ js_class }}};
+    exports.{{{ className }}} = {{{ className }}};
   } else {
     this.{{{ doc_id }}} = {};
-    this.{{{ doc_id }}}.{{{ js_class }}} = {{{ js_class }}};
+    this.{{{ doc_id }}}.{{{ className }}} = {{{ className }}};
   }
   
-  {{{ js_class }}}.prototype = {{{ js_prototype }}};
+  {{{ className }}}.prototype = {{{ methods }}};
 })(this);
