@@ -1,31 +1,27 @@
 {
+  "construct": "function(design_doc, template_doc) {\n  this.ddoc = design_doc;\n  this.tdoc = template_doc;\n}", 
   "edoc__id": "template", 
   "edoc_couchapp": {
     "manifest": [
+      "construct.js", 
       "env.json", 
-      "js_constructor.js", 
-      "js_module.js", 
-      "js_prototype/", 
-      "js_prototype/render.js"
+      "js_module.js"
     ], 
     "objects": {}, 
     "signatures": {}
   }, 
   "env": {
-    "build_module": true, 
-    "js_class": "Template", 
-    "js_functions": {
-      "js_prototype": {
+    "page": {
+      "name": "template", 
+      "title": "Template"
+    }, 
+    "script": {
+      "build_module": true, 
+      "className": "Template", 
+      "methods": {
         "render": true
       }
-    }, 
-    "name": "template", 
-    "title": "Template", 
-    "type": "script"
+    }
   }, 
-  "js_constructor": "function(design_doc, template_doc) {\n  this.ddoc = design_doc;\n  this.tdoc = template_doc;\n}", 
-  "js_module": ";(function() {\n  var Template = function(design_doc, template_doc) {\n    this.ddoc = design_doc;\n    this.tdoc = template_doc;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.template = {};\n    this.template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      return this.tdoc.page;\n    }\n  };\n})(this);", 
-  "js_prototype": {
-    "render": "function(doc) {\n  return this.tdoc.page;\n}"
-  }
+  "js_module": ";(function() {\n  var Template = function(design_doc, template_doc) {\n    this.ddoc = design_doc;\n    this.tdoc = template_doc;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.template = {};\n    this.template.Template = Template;\n  }\n  \n  Template.prototype = {\n\n  };\n})(this);"
 }

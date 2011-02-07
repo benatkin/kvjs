@@ -26,7 +26,7 @@ ScriptRenderer.prototype = {
   },
   render: function() {
     return this.mustache.to_html(this.template, {
-      "className": this.doc.env.className,
+      "className": this.doc.env.script.className,
       "construct": this.indent(this.doc.construct, "  "),
       "methods": this.render_methods(),
       "doc_id": this.doc._id

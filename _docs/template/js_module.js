@@ -12,8 +12,6 @@
   }
   
   Template.prototype = {
-    "render": function(doc) {
-      return this.tdoc.page;
-    }
+
   };
 })(this);

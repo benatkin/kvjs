@@ -12,9 +12,11 @@
     "signatures": {}
   }, 
   "env": {
-    "name": "centerbox", 
-    "title": "CenterBox", 
-    "type": "template"
+    "page": {
+      "name": "centerbox", 
+      "title": "CenterBox"
+    }, 
+    "template": {}
   }, 
   "examples": {
     "simple": {
