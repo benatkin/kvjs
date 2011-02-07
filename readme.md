@@ -29,6 +29,7 @@ TODO
 
 * add _rewrite
 * deploy to Cloudant at kvjs.com
+* better multiline display
 * ...
 * get a proper build system going
 
