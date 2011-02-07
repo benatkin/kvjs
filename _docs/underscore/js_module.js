@@ -56,6 +56,7 @@
   } else {
     root._ = _;
   }
+  exports.underscore = _;
 
   // Current version.
   _.VERSION = '1.1.4';

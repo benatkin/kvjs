@@ -1,0 +1,14 @@
+[
+  {
+    "from" : "",
+    "to" : "_show/redirect"
+  },
+  {
+    "from" : "/*",
+    "to" : "_show/page/*"
+  },
+  {
+    "from" : "kvjs_db/*",
+    "to" : "../../*"
+  }
+]

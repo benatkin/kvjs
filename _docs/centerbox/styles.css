@@ -8,7 +8,7 @@ body.{{css_class}} div.{{css_class}}_box {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding: 0;
-  width: {{width}}px;
+  max-width: {{width}}px;
 }
 
 body.{{css_class}} div.{{css_class}}_header {
@@ -24,4 +24,9 @@ body.{{css_class}} div.{{css_class}}_header h1 {
 }
 
 body.{{css_class}} div.{{css_class}}_body {
+}
+
+body.{{css_class}} textarea {
+  width: 95%;
+  height: 30em;
 }
