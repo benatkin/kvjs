@@ -3,5 +3,5 @@ function(doc) {
   var docenv = require('edocs/docenv/js_module'),
       ddoc = new(docenv.DocEnv)(this);
   
-  return new(ddoc.edoc_modules.template.Template)(ddoc.edocs.centerbox).render(doc);
+  return new(ddoc.edoc_modules.template.Template)(ddoc, ddoc.edocs.centerbox).render(doc);
 }

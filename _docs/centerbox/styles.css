@@ -1,27 +1,27 @@
-body.{{ css_class }} {
-  color: #bbb;
+body.{{css_class}} {
   font-family: helvetica, Arial, sans-serif;
 }
 
-body.{{ css_class }} div.{{ css_class }}_box {
+body.{{css_class}} div.{{css_class}}_box {
   margin-left: auto;
   margin-right: auto;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding: 0;
+  width: {{width}}px;
 }
 
-body.{{ css_class }} div.{{ css_class }}_header {
+body.{{css_class}} div.{{css_class}}_header {
   background-color: #000;
+  color: #bbb;
   margin: 0;
   padding: 0.5em;
 }
 
-body.{{ css_class }} div.{{ css_class }}_header h1 {
+body.{{css_class}} div.{{css_class}}_header h1 {
   color: #fff;
   text-align: center;
 }
 
-body.{{ css_class }} div.{{ css_class }}_body {
-  background-color: #000;
+body.{{css_class}} div.{{css_class}}_body {
 }

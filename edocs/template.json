@@ -5,7 +5,9 @@
     "manifest": [
       "construct.js", 
       "env.json", 
-      "js_module.js"
+      "js_module.js", 
+      "methods/", 
+      "methods/render.js"
     ], 
     "objects": {}, 
     "signatures": {}
@@ -23,5 +25,8 @@
       }
     }
   }, 
-  "js_module": ";(function() {\n  var Template = function(design_doc, template_doc) {\n    this.ddoc = design_doc;\n    this.tdoc = template_doc;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.template = {};\n    this.template.Template = Template;\n  }\n  \n  Template.prototype = {\n\n  };\n})(this);"
+  "js_module": ";(function() {\n  var Template = function(design_doc, template_doc) {\n    this.ddoc = design_doc;\n    this.tdoc = template_doc;\n  };\n  \n  if (exports) {\n    exports.Template = Template;\n  } else {\n    this.template = {};\n    this.template.Template = Template;\n  }\n  \n  Template.prototype = {\n    \"render\": function(doc) {\n      var _ = this.ddoc.edoc_modules.underscore,\n        mustache = this.ddoc.edoc_modules.mustache,\n        ctx = {};\n        _.each(this.tdoc.vars, function(value, key) {\n          ctx[key] = value.default || value.placeholder;\n        }, this);\n        _.each(this.tdoc.vars, function(value, key) {\n          if (value.default_to) {\n            ctx[key] = ctx[value.default_to];\n          }\n        }, this);\n        var doc_without_revisions = _.clone(doc);\n        delete doc_without_revisions['_revisions'];\n        var json = JSON.stringify(doc_without_revisions, null, 2);\n        _.extend(ctx, {\n          \"title\": doc.env.page.title,\n          \"body\": mustache.to_html(\"<pre>{{json}}</pre>\", {\"json\": json})\n        });\n      ctx.inline_styles = mustache.to_html(this.tdoc.styles, ctx);\n      return mustache.to_html(this.tdoc.page, ctx);\n    }\n  };\n})(this);", 
+  "methods": {
+    "render": "function(doc) {\n  var _ = this.ddoc.edoc_modules.underscore,\n    mustache = this.ddoc.edoc_modules.mustache,\n    ctx = {};\n    _.each(this.tdoc.vars, function(value, key) {\n      ctx[key] = value.default || value.placeholder;\n    }, this);\n    _.each(this.tdoc.vars, function(value, key) {\n      if (value.default_to) {\n        ctx[key] = ctx[value.default_to];\n      }\n    }, this);\n    var doc_without_revisions = _.clone(doc);\n    delete doc_without_revisions['_revisions'];\n    var json = JSON.stringify(doc_without_revisions, null, 2);\n    _.extend(ctx, {\n      \"title\": doc.env.page.title,\n      \"body\": mustache.to_html(\"<pre>{{json}}</pre>\", {\"json\": json})\n    });\n  ctx.inline_styles = mustache.to_html(this.tdoc.styles, ctx);\n  return mustache.to_html(this.tdoc.page, ctx);\n}"
+  }
 }

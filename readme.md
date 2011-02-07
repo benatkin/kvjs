@@ -13,7 +13,7 @@ Getting Started
     d.  Create a .couchapprc in the root directory of this repo
     e.  run `couchapp push`
 2.  Edit the documents (the design document and the documents under \_docs) and run `couchapp push` to update them.
-3.  Runn `python fulfillment.py` to update documents that are automatically processed or are generated from other documents. Then, push again. Some changes, especially changing the script renderer, require running `couchapp push` and `python fulfillment.py` more than once.
+3.  Run `python fulfillment.py` to update documents that are automatically processed or are generated from other documents. Then, push again. Some changes, especially changing the script renderer, require running `couchapp push` and `python fulfillment.py` more than once.
 
 Sample `.couchapprc`:
     {
@@ -27,9 +27,6 @@ Sample `.couchapprc`:
 TODO
 ----
 
-* Include underscore.js
-* Make `page` show function use template
-* Make page show function grab the title from `doc.kvjs.title` and spit out the json in a pre for now
 * add _rewrite
 * deploy to Cloudant at kvjs.com
 * ...

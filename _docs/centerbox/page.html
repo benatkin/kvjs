@@ -1,24 +1,26 @@
 <html>
   <head>
-    <title>{{ title }}</title>
-    {{{ stylesheets }}}
-    {{{ inline_styles }}}
+    <title>{{title}}</title>
+    {{{stylesheets}}}
+    <style type="text/css">
+    {{{inline_styles}}}
+    </style>
   </head>
-  <body class="{{ class }}">
-    <div class="{{ class }}_wrap">
-      <div class="{{ class }}_box">
-        <div class="{{ class }}_header">
-          <h1>{{ title }}</h1>
-          {{ #subtitle }}
-          <p>{{ subtitle }}</p>
-          {{ /subtitle }}
+  <body class="{{ css_class }}">
+    <div class="{{ css_class }}_wrap">
+      <div class="{{ css_class }}_box">
+        <div class="{{ css_class }}_header">
+          <h1>{{title}}</h1>
+          {{#subtitle}}
+          <p>{{subtitle}}</p>
+          {{/subtitle}}
         </div>
-        <div class="{{ class }}_body">
-          {{{ body }}}
+        <div class="{{ css_class }}_body">
+          {{{body}}}
         </div>
       </div>
     </div>
-    {{{ scripts }}}
-    {{{ inline_scripts }}}
+    {{{scripts}}}
+    {{{inline_scripts}}}
   </body>
 </html>

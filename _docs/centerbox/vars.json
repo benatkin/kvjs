@@ -82,5 +82,8 @@
   "login": {
     "default": "",
     "escaped": false
+  },
+  "width": {
+    "default": 720
   }
 }
