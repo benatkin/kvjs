@@ -1,4 +1,5 @@
-function(doc) {
+function(doc, require_prefix) {
+  require_prefix = require_prefix || "";
   var key;
   for (key in doc) {
     if (doc.hasOwnProperty(key)) {
@@ -9,7 +10,7 @@ function(doc) {
     this.edoc_modules = {};
     for (key in this.env.edocs) {
       if (this.edocs[key] && this.edocs[key].js_module) {
-        this.edoc_modules[key] = require('edocs/' + key + '/js_module');
+        this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/js_module');
       }
     }
   }

@@ -1,7 +1,18 @@
 function(doc) {
-  // TODO: make it look at the doc & find the template
   var docenv = require('edocs/docenv/js_module'),
-      ddoc = new(docenv.DocEnv)(this);
+      ddoc = new(docenv.DocEnv)(this),
+      tdoc;
+      
+  if (doc) {
+    if (doc.env && doc.env.page && doc.env.page.template)
+      tdoc = ddoc.edocs[doc.env.page.template];
+    if (typeof tdoc !== "object")
+      tdoc = ddoc.edocs.centerbox;
+    return new(ddoc.edoc_modules.template.Template)(ddoc, tdoc).render(doc);
+  }
   
-  return new(ddoc.edoc_modules.template.Template)(ddoc, ddoc.edocs.centerbox).render(doc);
+  return {
+    code: 404,
+    body: "<h1>Not found.</h1>"
+  };
 }

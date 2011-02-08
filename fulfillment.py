@@ -43,7 +43,6 @@ class Fulfillment(object):
     if env.has_key('script') and env['script'].get('build_module', False):
       resp = self.db.res.get('/_design/env/_show/script/%s' % doc_id)
       self.write_if_changed(self.doc_path('js_module.js', doc_id), resp.body_string())
-      resp.close()
   
   def write_if_changed(self, pth, val):
     verb = 'Created'
