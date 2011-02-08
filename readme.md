@@ -27,6 +27,16 @@ Sample `.couchapprc`:
 TODO
 ----
 
+### action items
+
+* add another template
+* add config to design doc (root or env)
+* add a page with a custom template
+* add markdown doc
+* make renderer use specified template and markdown body
+
+### areas of focus
+
 * ...
 * get a proper build system going
 
