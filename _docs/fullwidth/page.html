@@ -13,7 +13,12 @@
           <h1>{{title}}</h1>
         </div>
         <div class="{{ css_class }}_body">
-          {{{body}}}
+          <h2>(root)</h2>
+          <textarea>{{json}}</textarea>
+          {{#multiline}}
+          <h2>{{path}}</h2>
+          <textarea>{{str}}</textarea>
+          {{/multiline}}
         </div>
       </div>
     </div>
