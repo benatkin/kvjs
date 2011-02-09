@@ -19,7 +19,8 @@ var Mustache = function() {
     pragmas: {},
     buffer: [],
     pragmas_implemented: {
-      "IMPLICIT-ITERATOR": true
+      "IMPLICIT-ITERATOR": true,
+      "TRANSLATION-HINT": true
     },
     context: {},
 
@@ -40,13 +41,30 @@ var Mustache = function() {
         }
       }
 
-      template = this.render_pragmas(template);
-      var html = this.render_section(template, context, partials);
-      if(in_recursion) {
-        return this.render_tags(html, context, partials, in_recursion);
+      // Branching or moving down the partial stack, save any translation mode info.
+      if (this.pragmas['TRANSLATION-HINT']) {
+        context['_TRANSLATION-HINT_mode'] = this.pragmas['TRANSLATION-HINT'].mode;
       }
 
-      this.render_tags(html, context, partials, in_recursion);
+      // get the pragmas together
+      template = this.render_pragmas(template);
+
+      // handle all translations
+      template = this.render_i18n(template, context, partials);
+
+      // render the template
+      var html = this.render_section(template, context, partials);
+
+      // render_section did not find any sections, we still need to render the tags
+      if (html === false) {
+        html = this.render_tags(template, context, partials, in_recursion);
+      }
+
+      if (in_recursion) {
+        return html;
+      } else {
+        this.sendLines(html);
+      }
     },
 
     /*
@@ -55,6 +73,15 @@ var Mustache = function() {
     send: function(line) {
       if(line != "") {
         this.buffer.push(line);
+      }
+    },
+
+    sendLines: function(text) {
+      if (text) {
+        var lines = text.split("\n");
+        for (var i = 0; i < lines.length; i++) {
+          this.send(lines[i]);
+        }
       }
     },
 
@@ -72,7 +99,7 @@ var Mustache = function() {
             this.ctag);
       return template.replace(regex, function(match, pragma, options) {
         if(!that.pragmas_implemented[pragma]) {
-          throw({message: 
+          throw({message:
             "This implementation of mustache doesn't understand the '" +
             pragma + "' pragma"});
         }
@@ -100,50 +127,107 @@ var Mustache = function() {
       return this.render(partials[name], context[name], partials, true);
     },
 
+    render_i18n: function(html, context, partials) {
+      if (html.indexOf(this.otag + "_i") == -1) {
+        return html;
+      }
+      var that = this;
+      var regex = new RegExp(this.otag + "\\_i" + this.ctag +
+        "\\s*([\\s\\S]+?)" + this.otag + "\\/i" + this.ctag, "mg");
+
+      // for each {{_i}}{{/i}} section do...
+      return html.replace(regex, function(match, content) {
+        var translationMode;
+
+        if (that.pragmas && that.pragmas["TRANSLATION-HINT"] && that.pragmas["TRANSLATION-HINT"].mode) {
+          translationMode = that.pragmas["TRANSLATION-HINT"].mode;
+        } else if (context['_TRANSLATION-HINT_mode']) {
+          translationMode = context['_TRANSLATION-HINT_mode'];
+        }
+
+        var params = content;
+
+        if (translationMode) {
+          params = {
+            text: content,
+            mode: translationMode
+          };
+        }
+
+        return _(params);
+      });
+    },
+
     /*
       Renders inverted (^) and normal (#) sections
     */
     render_section: function(template, context, partials) {
       if(!this.includes("#", template) && !this.includes("^", template)) {
-        return template;
+        // did not render anything, there were no sections
+        return false;
       }
 
       var that = this;
-      // CSW - Added "+?" so it finds the tighest bound, not the widest
-      var regex = new RegExp(this.otag + "(\\^|\\#)\\s*(.+)\\s*" + this.ctag +
-              "\n*([\\s\\S]+?)" + this.otag + "\\/\\s*\\2\\s*" + this.ctag +
-              "\\s*", "mg");
+
+      // This regex matches _the first_ section ({{#foo}}{{/foo}}), and captures the remainder
+      var regex = new RegExp(
+        "^([\\s\\S]*?)" +         // all the crap at the beginning that is not {{*}} ($1)
+
+        this.otag +               // {{
+        "(\\^|\\#)\\s*(.+)\\s*" + //  #foo (# == $2, foo == $3)
+        this.ctag +               // }}
+
+        "\n*([\\s\\S]*?)" +       // between the tag ($2). leading newlines are dropped
+
+        this.otag +               // {{
+        "\\/\\s*\\3\\s*" +        //  /foo (backreference to the opening tag).
+        this.ctag +               // }}
+
+        "\\s*([\\s\\S]*)$",       // everything else in the string ($4). leading whitespace is dropped.
+
+      "g");
 
       // for each {{#foo}}{{/foo}} section do...
-      return template.replace(regex, function(match, type, name, content) {
-        var value = that.find(name, context);
-        if(type == "^") { // inverted section
-          if(!value || that.is_array(value) && value.length === 0) {
+      return template.replace(regex, function(match, before, type, name, content, after) {
+        // before contains only tags, no sections
+        var renderedBefore = before ? that.render_tags(before, context, partials, true) : "",
+
+        // after may contain both sections and tags, so use full rendering function
+            renderedAfter = after ? that.render(after, context, partials, true) : "",
+
+        // will be computed below
+            renderedContent,
+
+            value = that.find(name, context);
+
+        if (type === "^") { // inverted section
+          if (!value || that.is_array(value) && value.length === 0) {
             // false or empty list, render it
-            return that.render(content, context, partials, true);
+            renderedContent = that.render(content, context, partials, true);
           } else {
-            return "";
+            renderedContent = "";
           }
-        } else if(type == "#") { // normal section
-          if(that.is_array(value)) { // Enumerable, Let's loop!
-            return that.map(value, function(row) {
-              return that.render(content, that.create_context(row),
-                partials, true);
+        } else if (type === "#") { // normal section
+          if (that.is_array(value)) { // Enumerable, Let's loop!
+            renderedContent = that.map(value, function(row) {
+              return that.render(content, that.create_context(row), partials, true);
             }).join("");
-          } else if(that.is_object(value)) { // Object, Use it as subcontext!
-            return that.render(content, that.create_context(value),
+          } else if (that.is_object(value)) { // Object, Use it as subcontext!
+            renderedContent = that.render(content, that.create_context(value),
               partials, true);
-          } else if(typeof value === "function") {
+          } else if (typeof value === "function") {
             // higher order section
-            return value.call(context, content, function(text) {
+            renderedContent = value.call(context, content, function(text) {
               return that.render(text, context, partials, true);
             });
-          } else if(value) { // boolean section
-            return that.render(content, context, partials, true);
+          } else if (value) { // boolean section
+            renderedContent = that.render(content, context, partials, true);
           } else {
-            return "";
+            renderedContent = "";
           }
         }
+
+        return renderedBefore + renderedContent + renderedAfter;
       });
     },
 
@@ -312,7 +396,7 @@ var Mustache = function() {
 
   return({
     name: "mustache.js",
-    version: "0.3.1-dev",
+    version: "0.3.1-dev-twitter",
 
     /*
       Turns a template and view into HTML
@@ -322,7 +406,7 @@ var Mustache = function() {
       if(send_fun) {
         renderer.send = send_fun;
       }
-      renderer.render(template, view, partials);
+      renderer.render(template, view || {}, partials);
       if(!send_fun) {
         return renderer.buffer.join("\n");
       }
