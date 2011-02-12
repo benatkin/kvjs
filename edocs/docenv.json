@@ -1,11 +1,12 @@
 {
   "construct": "function(doc, require_prefix) {\n  require_prefix = require_prefix || \"\";\n  var key;\n  for (key in doc) {\n    if (doc.hasOwnProperty(key)) {\n      this[key] = doc[key];\n    }\n  }\n  if (this.env && this.env.edocs) {\n    this.edoc_modules = {};\n    for (key in this.env.edocs) {\n      if (this.edocs[key] && this.edocs[key].js_module) {\n        this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/js_module');\n      } else if (this.edocs[key] && this.edocs[key].env && this.edocs[key].commonjs) {\n        this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/' + key);\n      }\n    }\n  }\n}", 
+  "docenv": ";(function() {\n  var DocEnv = function(doc, require_prefix) {\n    require_prefix = require_prefix || \"\";\n    var key;\n    for (key in doc) {\n      if (doc.hasOwnProperty(key)) {\n        this[key] = doc[key];\n      }\n    }\n    if (this.env && this.env.edocs) {\n      this.edoc_modules = {};\n      for (key in this.env.edocs) {\n        if (this.edocs[key] && this.edocs[key].js_module) {\n          this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/js_module');\n        } else if (this.edocs[key] && this.edocs[key].env && this.edocs[key].commonjs) {\n          this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/' + key);\n        }\n      }\n    }\n  };\n  \n  if (exports) {\n    exports.DocEnv = DocEnv;\n  } else {\n    this.docenv = {};\n    this.docenv.DocEnv = DocEnv;\n  }\n  \n  DocEnv.prototype = {\n\n  };\n})(this);", 
   "edoc__id": "docenv", 
   "edoc_couchapp": {
     "manifest": [
       "construct.js", 
+      "docenv.js", 
       "env.json", 
-      "js_module.js", 
       "methods/"
     ], 
     "objects": {}, 
@@ -19,9 +20,9 @@
     "script": {
       "build_module": true, 
       "className": "DocEnv", 
+      "commonjs": true, 
       "methods": {}
     }
   }, 
-  "js_module": ";(function() {\n  var DocEnv = function(doc, require_prefix) {\n    require_prefix = require_prefix || \"\";\n    var key;\n    for (key in doc) {\n      if (doc.hasOwnProperty(key)) {\n        this[key] = doc[key];\n      }\n    }\n    if (this.env && this.env.edocs) {\n      this.edoc_modules = {};\n      for (key in this.env.edocs) {\n        if (this.edocs[key] && this.edocs[key].js_module) {\n          this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/js_module');\n        } else if (this.edocs[key] && this.edocs[key].env && this.edocs[key].commonjs) {\n          this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/' + key);\n        }\n      }\n    }\n  };\n  \n  if (exports) {\n    exports.DocEnv = DocEnv;\n  } else {\n    this.docenv = {};\n    this.docenv.DocEnv = DocEnv;\n  }\n  \n  DocEnv.prototype = {\n\n  };\n})(this);", 
   "methods": {}
 }

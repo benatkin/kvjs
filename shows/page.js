@@ -1,5 +1,5 @@
 function(doc) {
-  var docenv = require('edocs/docenv/js_module'),
+  var docenv = require('edocs/docenv/docenv'),
       ddoc = new(docenv.DocEnv)(this),
       tdoc;
       
