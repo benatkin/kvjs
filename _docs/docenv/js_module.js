@@ -12,6 +12,8 @@
       for (key in this.env.edocs) {
         if (this.edocs[key] && this.edocs[key].js_module) {
           this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/js_module');
+        } else if (this.edocs[key] && this.edocs[key].env && this.edocs[key].commonjs) {
+          this.edoc_modules[key] = require(require_prefix + 'edocs/' + key + '/' + key);
         }
       }
     }
