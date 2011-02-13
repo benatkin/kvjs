@@ -41,7 +41,7 @@ class Fulfillment(object):
   def build_js(self, doc_id=None):
     env = self.get_local_env(doc_id)
     if env.has_key('script') and env['script'].get('build_module', False):
-      resp = self.db.res.get('/_design/env/_show/script/%s' % doc_id)
+      resp = self.db.res.get('/_design/kvjs/_show/script/%s' % doc_id)
       self.write_if_changed(self.doc_path('%s.js' % doc_id, doc_id), resp.body_string())
   
   def write_if_changed(self, pth, val):

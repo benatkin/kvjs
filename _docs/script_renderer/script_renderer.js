@@ -16,10 +16,9 @@ ScriptRenderer.prototype = {
     return v;
   },
   render_methods: function() {
-    var lines = [], value, value_str;
-    for (var key in this.doc.methods) {
-      value = this.doc.methods[key];
-      value = this.indent(this.methods[key] ? value : JSON.stringify(value, null, 2), "    ");
+    var lines = [];
+    for (var key in this.methods) {
+      var value = this.indent(this.doc[key], "    ");
       lines.push("    " + JSON.stringify(key) + ': ' + value);
     }
     return "{\n" + lines.join(",\n") + "\n  }"
