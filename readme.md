@@ -63,6 +63,12 @@ docs, that aren't current, will contain links to the AppEnv.
 
 My intent is for the AppEnv to be the entry point most of the time.
 
+Finally, the AppEnv on the client should be allowed to get out of
+sync with the AppEnv on the server. It should keep track of what
+needs to be updated on the server, preferably in a couchy way. It
+should provide CouchDB's interface with JavaScript methods. Finally,
+it should keep some uuids handy. :)
+
 Annotations, Stamping, Items (draft)
 ------------------------------------
 
