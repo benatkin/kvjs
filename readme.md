@@ -29,6 +29,7 @@ TODO
 
 ### action items
 
+* move methods out of methods directory
 * add app config to design doc (root or env)
 * add app config option for setting template
 * implement separate page view and data view

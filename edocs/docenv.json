@@ -6,8 +6,7 @@
     "manifest": [
       "construct.js", 
       "docenv.js", 
-      "env.json", 
-      "methods/"
+      "env.json"
     ], 
     "objects": {}, 
     "signatures": {}
@@ -23,6 +22,5 @@
       "commonjs": true, 
       "methods": {}
     }
-  }, 
-  "methods": {}
+  }
 }

@@ -48,7 +48,7 @@
       extract_multiline(path, disp_doc, multiline);
       var json = JSON.stringify(disp_doc, null, 2);
       _.extend(ctx, {
-        "title": doc.env.page.title,
+        "title": ((doc.env && doc.env.page && doc.env.page.title) || doc._id),
         "json": json,
         "multiline": multiline
       });
