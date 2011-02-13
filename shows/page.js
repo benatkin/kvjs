@@ -6,6 +6,8 @@ function(doc) {
   if (doc) {
     if (doc.env && doc.env.page && doc.env.page.template)
       tdoc = ddoc.edocs[doc.env.page.template];
+    if (typeof tdoc !== "object" && ddoc.env && ddoc.env.app && ddoc.env.app.template)
+      tdoc = ddoc.edocs[ddoc.env.app.template];
     if (typeof tdoc !== "object")
       tdoc = ddoc.edocs.centerbox;
     return new(ddoc.edoc_modules.template.Template)(ddoc, tdoc).render(doc);
