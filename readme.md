@@ -29,9 +29,10 @@ TODO
 
 ### action items
 
-* add another template
-* add config to design doc (root or env)
-* add a page with a custom template
+* add app config to design doc (root or env)
+* add app config option for setting template
+* implement separate page view and data view
+* add rewrites
 * add markdown doc
 * make renderer use specified template and markdown body
 
@@ -41,6 +42,26 @@ TODO
 * get a proper build system going
 
 I [avoid yammering about my uber-clever plans before I attempt them](http://sivers.org/zipit "one of my favorite articles"), but I have other todos. If you're curious, find me online. I may tell you some of them. :)
+
+DocEnv (draft)
+--------------
+
+DocEnv builds an environment around a document. There are also app
+environments. They contain the data, along with other objects. The
+document data would be at `doc.data` where doc is the DocEnv. The 
+data might be wrapped at some point for easy traversal, and if it
+is, the original data might be at `doc.raw`. It might be cleared
+out if it gets invalidated and have to be regenerated.
+
+The other types of objects might include edocs (a mechanism for
+updating embedded documents), page, site, script, and template.
+
+There will also be circular links to the design doc's AppEnv and
+the DocEnv of the current doc. The AppEnv will also contain
+references to other docs under `app.docs`, and the DocEnv of other
+docs, that aren't current, will contain links to the AppEnv.
+
+My intent is for the AppEnv to be the entry point most of the time.
 
 Annotations, Stamping, Items (draft)
 ------------------------------------
