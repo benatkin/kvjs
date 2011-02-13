@@ -1,5 +1,5 @@
 function(doc, req) {
-  var docenv = require('edocs/docenv/js_module'),
+  var docenv = require('edocs/docenv/docenv'),
       ddoc = new(docenv.DocEnv)(this),
       ScriptRenderer = ddoc.edoc_modules.script_renderer.ScriptRenderer;
       

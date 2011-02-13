@@ -34,11 +34,6 @@ ScriptRenderer.prototype = {
   }
 };
 
-if (typeof exports !== 'undefined') {
-  exports.ScriptRenderer = ScriptRenderer;
-} else {
-  this.env = (this.env || {});
-  this.env.ScriptRenderer = ScriptRenderer;
-}
+exports.ScriptRenderer = ScriptRenderer;
 
 })(this);
