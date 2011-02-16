@@ -36,6 +36,7 @@ TODO
 * add rewrites
 * add markdown doc
 * make renderer use specified template and markdown body
+* use *lib* for modules instead of edocs
 
 ### areas of focus
 
