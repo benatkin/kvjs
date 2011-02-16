@@ -1,5 +1,5 @@
 ;(function() {
-  var DocEnv = function(doc, require_prefix) {
+  var App = function(doc, require_prefix) {
     require_prefix = require_prefix || "";
     var key;
     for (key in doc) {
@@ -20,13 +20,13 @@
   };
   
   if (exports) {
-    exports.DocEnv = DocEnv;
+    exports.App = App;
   } else {
-    this.docenv = {};
-    this.docenv.DocEnv = DocEnv;
+    this.app = {};
+    this.app.App = App;
   }
   
-  DocEnv.prototype = {
+  App.prototype = {
 
   };
 })(this);

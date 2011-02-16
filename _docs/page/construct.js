@@ -1,4 +1,5 @@
 function(doc) {
+  // not used yet?
   if (doc.env && doc.env.page && doc.env.page.template)
     tdoc = doc.app.edocs[doc.env.page.template];
   if (typeof tdoc !== "object" && doc.app.env && doc.app.env.app && doc.app.env.app.template)

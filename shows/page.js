@@ -1,16 +1,16 @@
 function(doc) {
-  var docenv = require('edocs/docenv/docenv'),
-      ddoc = new(docenv.DocEnv)(this),
+  var App = require('edocs/app/app').App,
+      app = new App(this),
       tdoc;
       
   if (doc) {
     if (doc.env && doc.env.page && doc.env.page.template)
-      tdoc = ddoc.edocs[doc.env.page.template];
-    if (typeof tdoc !== "object" && ddoc.env && ddoc.env.app && ddoc.env.app.template)
-      tdoc = ddoc.edocs[ddoc.env.app.template];
+      tdoc = app.edocs[doc.env.page.template];
+    if (typeof tdoc !== "object" && app.env && app.env.app && app.env.app.template)
+      tdoc = app.edocs[app.env.app.template];
     if (typeof tdoc !== "object")
-      tdoc = ddoc.edocs.centerbox;
-    return new(ddoc.edoc_modules.template.Template)(ddoc, tdoc).render(doc);
+      tdoc = app.edocs.centerbox;
+    return new(app.edoc_modules.template.Template)(app, tdoc).render(doc);
   }
   
   return {

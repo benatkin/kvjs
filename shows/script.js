@@ -1,10 +1,10 @@
 function(doc, req) {
-  var docenv = require('edocs/docenv/docenv'),
-      ddoc = new(docenv.DocEnv)(this),
-      ScriptRenderer = ddoc.edoc_modules.script_renderer.ScriptRenderer;
+  var App = require('edocs/app/app').App,
+      app = new App(this),
+      ScriptRenderer = app.edoc_modules.script_renderer.ScriptRenderer;
       
   var body = new(ScriptRenderer)({
-    ddoc: ddoc,
+    ddoc: app,
     doc: doc,
     req: req
   }).render();
